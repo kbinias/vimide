@@ -20,20 +20,20 @@ Plugin 'VundleVim/Vundle.vim'
 "Plugin 'tpope/vim-repeat'
 "Plugin 'tpope/vim-surround.git'
 "Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/nerdtree'
+"Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter.git'
-"Plugin 'ctrlpvim/ctrlp.vim'
-"Plugin 'rking/ag.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'rking/ag.vim'
 Plugin 'majutsushi/tagbar'
 "Plugin 'gregsexton/gitv'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-"Plugin 'edkolev/tmuxline.vim'
-"Plugin 'christoomey/vim-tmux-navigator.git'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'christoomey/vim-tmux-navigator.git'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'python-mode/python-mode.git'
-"Plugin 'Chiel92/vim-autoformat'
+Plugin 'Chiel92/vim-autoformat'
 if has("unix" ) && !has("win32unix")
     "" YCM on cygwin introduce delay and clang is not working
     Plugin 'Valloric/YouCompleteMe.git'
@@ -75,7 +75,6 @@ set softtabstop=4
 set tabstop=4
 set expandtab
 set number
-set relativenumber
 set encoding=utf-8
 set hlsearch " search highlighting
 set ignorecase
@@ -119,8 +118,6 @@ noremap <leader>co :wa<CR>:make! <CR>
 map <F12> :setlocal spell! spelllang=en_us<CR>
 imap <F12> <ESC>:setlocal spell! spelllang=en_us<CR>
 
-map <C-n> :call NumberToggle()<CR>
-map <leader>n :call RenameFile()<CR>
 map <F8> :call ToggleMouse()<CR>
 map <F7> :call ToggleBackground()<CR>
 
@@ -134,26 +131,6 @@ nnoremap <BS> <C-^>
 " Functions
 " #############################################################
 
-function! NumberToggle()
-    if(&relativenumber == 1)
-        set norelativenumber
-    else
-        set relativenumber
-    endif
-endfunc
-
-" rename current file, via Gary Bernhardt
-function! RenameFile()
-    let old_name = expand('%')
-    let new_name = input('New file name: ', expand('%'))
-    if new_name != '' && new_name != old_name
-        exec ':saveas ' . new_name
-        exec ':silent !rm ' . old_name
-        redraw!
-    endif
-endfunction
-
-" mouse toggle
 function! ToggleMouse()
     if &mouse == 'a' " check if mouse is enabled
         set mouse= " disable mouse
@@ -225,11 +202,9 @@ endif
 
 
 " NERDTree
-" ctrl+n shortcut
-map <F2> :NERDTreeToggle<CR>
 " close vim when the only window open is NERDTRee
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-let NERDTreeIgnore=['\.pyc$', '\~$']
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"let NERDTreeIgnore=['\.pyc$', '\~$']
 
 
 " The Silver Searcher
@@ -316,3 +291,6 @@ let g:pymode_folding=0
 let g:pymode_rope_goto_definition_cmd = 'e'
 " avoid K mapping overlap
 let g:pymode_doc_bind = ''
+
+map <F2> :Explore<CR>
+
