@@ -20,7 +20,7 @@ Plugin 'VundleVim/Vundle.vim'
 "Plugin 'tpope/vim-repeat'
 "Plugin 'tpope/vim-surround.git'
 "Plugin 'tpope/vim-fugitive'
-"Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter.git'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'rking/ag.vim'
@@ -106,17 +106,14 @@ nnoremap <leader>c :nohl<CR>
 
 imap jj <ESC>
 
-" close buffer without closing split
-nnoremap <C-c> :bp\|bd # <CR>
-
 " save all buffers and run Make without going to first error
 noremap <F5> <ESC>:wa<CR>:make! <CR>
 inoremap <F5> <ESC>:wa<CR>:make! <CR>
 noremap <leader>co :wa<CR>:make! <CR>
 
 " toggle spell check with <F12>
-map <F12> :setlocal spell! spelllang=en_us<CR>
-imap <F12> <ESC>:setlocal spell! spelllang=en_us<CR>
+"map <F12> :setlocal spell! spelllang=en_us<CR>
+"imap <F12> <ESC>:setlocal spell! spelllang=en_us<CR>
 
 map <F8> :call ToggleMouse()<CR>
 map <F7> :call ToggleBackground()<CR>
@@ -268,8 +265,8 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 "default config file for c languages
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
+"map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+map <F12> :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " speed-up gitgutter
 let g:gitgutter_realtime = 0
@@ -292,5 +289,13 @@ let g:pymode_rope_goto_definition_cmd = 'e'
 " avoid K mapping overlap
 let g:pymode_doc_bind = ''
 
-map <F2> :Explore<CR>
+"map <F2> :Explore<CR>
+map <F2> :NERDTreeToggle<CR>
+
+" Move to the next buffer
+nnoremap <C-N> :bnext<CR>
+" Move to the previous buffer
+nnoremap <C-M> :bprev<CR>
+" close buffer without closing split
+nnoremap <C-c> :bp\|bd # <CR>
 
